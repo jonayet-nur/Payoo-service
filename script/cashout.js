@@ -9,12 +9,17 @@ document.getElementById('cashout-btn').addEventListener("click",function(){
 
     //   get the current balance
 
-    const balanceElement = document.getElementById('balance');
-    const balance = balanceElement.innerText;
+    // const balanceElement = document.getElementById('balance');
+    // const balance = balanceElement.innerText;
+
+    const currentBalance = getBalance();
     // console.log(balance);
 
     // calculate new balance
-    const newBalance = Number(balance)- Number(cashoutAmount)
+    const newBalance = currentBalance - Number(cashoutAmount)
+
+    // const newBalance = Number(balance)- Number(cashoutAmount)
+
     // console.log(newBalance)
 
      if(newBalance < 0){
@@ -25,8 +30,31 @@ document.getElementById('cashout-btn').addEventListener("click",function(){
     const cashoutPin = getValueFromInput('cashout-pin')
     if(cashoutPin === '1020'){
         alert("Cashout Successful")
-        // console.log( 'newbalance',newBalance);
-        balanceElement.innerText = newBalance;
+        setBalance(newBalance);
+         const history = document.getElementById('history-container')
+        // 2-new div create korbo
+        const newHistory = document.createElement('div');
+        newHistory.innerHTML = `
+         <div class="flex items-center justify-between p-2 border-b border-base-500">
+    <div>
+      <p class="font-medium">Cashout Money</p>
+      <p class="text-sm text-gray-500">
+        ${cashoutNumber}, ${ cashoutAmount}
+      </p>
+    </div>
+
+    <div class="text-right">
+      <span class="badge badge-success badge-sm">Success</span>
+      <p class="text-xs text-gray-400 mt-1">
+        ${new Date().toLocaleTimeString()}
+      </p>
+    </div>
+  </div>
+        `
+        // newdiv history append korbo
+        history.appendChild(newHistory);
+       
+        // balanceElement.innerText = newBalance;
     }else{
         alert("Invalid Pin")
         return;
