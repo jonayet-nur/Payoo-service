@@ -35,7 +35,7 @@ document.getElementById('cashout-btn').addEventListener("click",function(){
         // 2-new div create korbo
         const newHistory = document.createElement('div');
         newHistory.innerHTML = `
-         <div class="flex items-center justify-between p-2 border-b border-base-500">
+         <div class="flex items-center justify-between p-4 border-b border-base-500">
     <div>
       <p class="font-medium">Cashout Money</p>
       <p class="text-sm text-gray-500">
